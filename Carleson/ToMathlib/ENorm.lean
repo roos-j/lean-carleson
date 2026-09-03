@@ -6,8 +6,6 @@ public import Mathlib.MeasureTheory.Function.LpSeminorm.Monotonicity
 public section
 
 -- Upstreaming status: can be upstreamed/being worked on
--- Many remaining declarations require PRing a new enorm class to mathlib first,
--- i.e. are not a good first target.
 
 noncomputable section
 
@@ -23,6 +21,7 @@ variable {α α' E E₁ E₂ : Type*}
 -- @[simp] lemma enorm_inv'' {a : ℝ≥0} (ha : a ≠ 0): ‖a⁻¹‖ₑ = ‖a‖ₑ⁻¹ := by
 --   simp_rw [enorm_NNReal, coe_inv ha]
 
+-- unused in the further project
 /-- An enormed monoid is an additive monoid endowed with a continuous enorm.
 Note: not sure if this is the "right" class to add to Mathlib. -/
 class ENormedAddCommSubMonoid (E : Type*) [TopologicalSpace E] extends ENormedAddCommMonoid E, Sub E where
@@ -36,6 +35,7 @@ The generalization of `NormedSpace` to `ENorm` is
 This could be its own class `ENormedSpace`, but this seems not worth it.
 -/
 
+-- unused in other files
 export ENormedAddCommSubMonoid
   (sub_add_cancel_of_enorm_le add_right_cancel_of_enorm_lt_top esub_self)
 
@@ -78,6 +78,7 @@ instance [NormedAddCommGroup E] [NormedSpace ℝ E] : ENormSMulClass ℝ≥0 E w
 
 namespace MeasureTheory
 
+-- unused
 lemma esub_zero [TopologicalSpace E] [ENormedAddCommSubMonoid E] {x : E} : x - 0 = x := by
   rw [← add_zero (x - 0)]
   apply sub_add_cancel_of_enorm_le
