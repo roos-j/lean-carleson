@@ -1411,55 +1411,17 @@ to have strong properties available to facilitate proving {\em a priori} estimat
 which can then be extended via density arguments.
 Bounded functions of compact support are a natural function class that stays invariant with respect
 to many common operations in analysis such as convolutions, fiberwise integration and projection.
-Weakening assumptions to almost everywhere variants destroys operations related to measure zero sets.
+Weakening assumptions to almost everywhere variants destroys this invariance for operations
+related to measure zero sets.
 For example, if $g$ is bounded with compact support, and $f$ is a closed embedding,
 is $g\circ f$ a bounded function with compact support?
 This is only true if $g$ has compact support and is bounded everywhere;
-otherwise $f$ may send a set of positive measure to a set of measure 0 where $g$ is ill-behaved.
+otherwise $f$ may send a set of positive measure to a set of measure zero where $g$ is ill-behaved.
 
 Staying close to mathematical convention and using everywhere boundedness and ordinary compactness
-also pays dividends in formalization, allowing us to provide a richer and more robust API.
-
-
-In the context of formalization this means that we are able to provide a stronger and more robust API.
-Ultimately all functions we deal with belong to one of these test function classes, which streamlines
-integrability proofs.
-
+pays dividends in formalization, allowing us to provide a richer and more robust API leading
+to simpler proofs.
 Further streamlining is possible by using \lean{fun_prop}.
-
-% functions that are bounded {\em everywhere}
-
-% Choosing the right definition of these structures is subtle.
-% Since most functions we're working with are only well-behaved up to almost everywhere equality (see \ref{subsec:Lp}),
-% there is a choice in deciding that the functions are only essentially bounded or bounded everywhere.
-% Similarly, for \lean{BoundedCompactSupport} there is a choice in requiring that the function has compact support or \emph{essentially compact support}
-% (that is, its support is the union of a relatively compact set and a null set,
-% where a relatively compact set is by definition a subset of a compact set).
-
-% In Carleson, we originally started with functions that are bounded everywhere and have compact support,
-% but we switched\footnote{see pull requests \href{https://github.com/fpvandoorn/carleson/pull/311}{311\extlink} and \href{https://github.com/fpvandoorn/carleson/pull/342}{342\extlink}} to functions that are only essentially bounded,
-% but still have compact support.
-% The reason for this is that \mathlib uses essentially bounded functions frequently in measure theory,
-% phrased as \lean{MemLp f ∞ μ}.
-
-% These notions are mathematically very similar,
-% but the choice has impact on precisely which lemmas you can prove about it.
-% For example, if $g$ is bounded with compact support, and $f$ is a closed embedding,
-% is $g\circ f$ a bounded function with compact support?
-% This is only true if $g$ has compact support and is bounded everywhere;
-% otherwise $f$ may send a set of positive measure to a set of measure 0 where $g$ is ill-behaved.
-% Another consideration into this design decision is how nicely one can work with these functions.
-% Some arguments are a little easier if we know that a function is well-behaved everywhere,
-% and not just almost everywhere.
-% In the Carleson project, there were two tricky arguments using an operation \lean{adjointCarlesonSum}\href{https://github.com/fpvandoorn/carleson/blob/2e755e6a67d8c0628104cc45f599df4888974a79/Carleson/Operators.lean#L215}{\extlink}.
-% We prove that this operation is bounded with compact support,
-% for these arguments it was convenient to use that this operation is bounded everywhere,
-% and not just essentially bounded.
-% While these arguments could be adapted using only that this operation is only essentially bounded,
-% the argument consists of some tricky manipulations with suprema over the arguments,
-% and these would have to be changed to essential suprema, which are a bit trickier to work with.
-% In the end, we decided to prove that this function was bounded with compact support, and additionally bounded everywhere.
-%These classes are tagged with the \lean{@[fun_prop]} attribute.
 
 \lean{fun_prop}\footnote{\url{https://leanprover-community.github.io/mathlib4_docs/tactics.html\#Mathlib.Meta.FunProp.funPropTacStx}}
 is a \mathlib tactic developed by Tomáš Skřivan
@@ -1477,10 +1439,6 @@ since it is better behaved w.r.t.\ multiplication and composition.
 % maybe: mention the ICERM group on the integrability tactic; https://github.com/leanprover-community/mathlib4/pull/39323
 % There is experimental work (involving some of this paper's authors) on making \texttt{fun\_prop} support integrability properties, building on these structures.
 % maybe not: does not build on these structures...
-
-% \begin{itemize}
-% 	\item Ongoing experiments with \texttt{fun\_prop}. TODO: consider whether this should be a separate subsection.
-% \end{itemize}
 
 \subsection{Common pitfalls}\label{subsec:pitfalls}
 
