@@ -1388,7 +1388,8 @@ integrability and measurability considerations are usually mathematically trivia
 
 It is desirable for this simplicity to be reflected in the formalization.
 This motivated packaging the recurring side conditions into test function classes.
-The structures \lean{BoundedCompactSupport}\href{https://github.com/fpvandoorn/carleson/blob/f2f614db47f1a30e3fceaa9c2e1f99ff356dd577/Carleson/ToMathlib/BoundedCompactSupport.lean#L81}{\extlink} and \lean{BoundedFiniteSupport}\href{https://github.com/fpvandoorn/carleson/blob/020d6e5c71d731952eb0379d222eea4049103ca0/Carleson/Defs.lean#L74}{\extlink}
+The structures \lean{BoundedCompactSupport}%\href{https://github.com/fpvandoorn/carleson/blob/f2f614db47f1a30e3fceaa9c2e1f99ff356dd577/Carleson/ToMathlib/BoundedCompactSupport.lean#L81}{\extlink}
+and \lean{BoundedFiniteSupport}%\href{https://github.com/fpvandoorn/carleson/blob/020d6e5c71d731952eb0379d222eea4049103ca0/Carleson/Defs.lean#L74}{\extlink}
 contain bounded measurable functions with compact support and with support of finite measure, respectively.
 
 Once these hypotheses are bundled, later proofs can invoke short API lemmas instead of repeatedly
@@ -1406,8 +1407,8 @@ one might be tempted to use the notion of {\em essential boundedness}
 rather than {\em everywhere boundedness} (and similarly, one might want to use {\em essential compactness}
 rather than genuine compactness).
 
-However, the right choice is clear once we remember that the point of {\em test functions} in analysis is
-to have strong properties available to facilitate proving {\em a priori} estimates
+In this context, it seems preferable to impose the stronger requirements. In analysis, test functions
+are typically chosen to have strong properties, making it easier to prove {\em a priori} estimates,
 which can then be extended via density arguments.
 Bounded functions of compact support are a natural function class that stays invariant with respect
 to many common operations in analysis such as convolutions, fiberwise integration and projection.
